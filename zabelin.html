@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 3;
+        }
+        .card{
+            background-color: antiquewhite;
+            margin: 5px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
-    <h1>бахмут</h1>
+    <h1 id="header2">Привет, чуркстанец</h1>
+<h1>да ты крутой</h1>
+<section class="content">
+</section>
+    <script>
+        let name = prompt("ты любишь женщин!?!??!?!??!??!?!")
+        let h1 = document.getElementById("header2")
+        if(name !=null) {
+        h1.innerText = 'привет,' + name 
+        } else {
+            sex = prompt("ты женщина!??!?!??!!!??!???")
+            if (sex == "ж") {
+                h1.innerText = "привет чубака"
+                h1.classList.add("red")
+                h1.setAttribute("class",)
+            } else if (sex == "м") {
+                 h1.innerText = "привет чубака"
+            } else {
+                 h1.innerText = "привет чурка"
+            }
+        }
+        card = document.createElement('div')
+        card.classList.add('card')
+        content = document.getElementsByClassName('content')[0]
+for(let i=0; i<9; i++) {
+    content.appendChild(card)// тут что-то не так
+}
+     </script>
 </body>
 </html>
