@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         h1 {
-            color: chocolate;
+            color: rgba(102, 43, 0, 0.705);
         }
         .pink {
             color:pink;
@@ -14,11 +14,28 @@
         .blue {
             color:blue
         }
+        .content {
+            display: grid;
+            grid-template-columns:repeat(3, 1fr) ;
+            gap:10px
+        }
+        .card {
+            background-color: brown;
+            margin: 5;
+            height: 100px;
+            font-size: 50px;
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: centers;
+        }
+
     </style>
 </head>
 <body>
     <h1 id="header2">Заголовок 2</h1>
-    <h1>Мне пока нечего рассказать</h1>
+    <h1>Твои любимые фильмы</h1>
+    <ol id="films"></ol>
     <script>
         let name = prompt('Как тебя зовут?')
         let h1 = document.getElementById('header2')
@@ -34,7 +51,21 @@
             } else { 
             h1.innerText= 'Привет,бесполое существо'            }
             }
-        
+
+        a =["Оно", "Крик" ,"Хатико", "Майор гром"]
+        let list = document.querySelector('#films')
+       for (let i=0; i<5; i++) {
+         let film_item = document.createElement('li')
+         if (i== 0)
+             message = "Укажите ваш любимый фильм:"
+            else if (i==4)
+            message = "И последний фильм:"
+             else
+             message = "Укажите еще одиг фильм"
+         film_item.innerText = prompt(message)
+         list.append(film_item)
+       }
+
     </script>
 </body>
 </html>
