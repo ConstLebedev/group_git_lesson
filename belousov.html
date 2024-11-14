@@ -29,13 +29,19 @@
 
         .content {
             display: grid;
-            grid-template-columns: 3;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
 
         .card {
             background-color: brown;
             padding: 10px;
             height: 100px;
+            font-size: 50px;
+            justify-content: center;
+            color: white;
+            align-items: center;
+            display: flex;
         }
     </style>
 </head>
@@ -48,9 +54,9 @@
     </div>
 
     <h1 id="header-2">Привет, нн</h1>
-    <section class="content">
+    <ol id="films-list">
 
-    </section>
+    </ol>
     <script>
         let name = prompt('как тебя зовут?')
         let h1 = document.getElementById('header-2')
@@ -66,12 +72,26 @@
                 h1.innerText = 'Самый умный(ая)?'
             }
         }
-        card = document.createElement('div');
-        card.classList.add('card')
-        content = document.getElementsByClassName('content')[0]
+
+
+        content = document.querySelector(".content")
         console.log(content)
-        for (let i = 0; i < 9; i++) {
-            content.appendChild(card);
+
+        let list = document.querySelector("#films-list")
+        for (i=0;i<5;i++) {
+      
+            if (i == 0) {
+                message = "Укажите ваш любимый фильм"
+            } else if(i==4) {
+message = "Укажите фильм, который вы ненавидите"
+            } else {
+                message = "так уж и быть напиши ещё"
+            }
+            name_film = prompt(message)
+            let film_item = document.createElement('li')
+            film_item.innerText = name_film
+list.append(film_item)
+
         }
     </script>
 
