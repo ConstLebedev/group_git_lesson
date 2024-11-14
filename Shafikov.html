@@ -23,14 +23,22 @@
 
     .content {
         display: grid;
-        grid-template-columns: 3;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
 
     .card{
-        background-color: aqua;
-        padding: 5px;
+        background-color: rgb(0, 0, 0);
+        margin: 5px;
         height: 100px;
+        font-size: 30px;
+        color: rgb(255, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+
  </style>
 <head>
     <meta charset="UTF-8">
@@ -39,8 +47,11 @@
 </head>
 <body>
     <h1 class="w">Бам бам бам бам</h1>
-    <h1 class="b" id="header2">Мы стреляем по </h1>
-    <h1 class="r">За Россию и дедов</h1>
+    <h1 class="b" id="header2">1234 </h1>
+    <h1 class="r">Любимая техника:</h1>
+    <ol id="Texnika_list">
+    
+    </ol>
 
     <section class="content">
       
@@ -49,7 +60,7 @@
         
         let name = prompt('Любишь СУ 27?')
         let h1 = document.getElementById('header2')
-    if (name !=null && name != "") {
+    if (name !=null) {
         h1.innerText = 'Мы стреляем по ...' + name
     }  else {
         sex = prompt('Стреляем по ... (да/нет)')
@@ -58,20 +69,25 @@
             h1.setAttribute('class', 'pink')
         }
 
-    else if (sex == 'да') {
+     else if (sex == 'да') {
             h1.innerText = 'Мы стреляем по хох...'
             h1.setAttribute('class', 'estuje')
         }else{
             h1.innerText = 'Душнила'
-        }
+        } 
 
     }
 
-    card = createElement('div')
-    card.Classlist.add('card')
-    content = document.getElementsByClassName('content') [0]
-    for (let i=0; i<9; i++) {
-       content.append(card) // че та не так
+    let films = ["Т90А", "Т90М", "Паницирь С1", "СПРУТ", "Т80БВМ"]
+    let list = document.querySelector("#Texnika_list")
+    for (let i=0; i<5; i++) {
+        let film_item = document.createElement('li')
+        if(i == 0)
+        message = "Укажите вашу любимую технику:"
+        else if (i == 4)
+         message = "И последняя техника:"
+        film_item.innerText = prompt(message)
+        list.append(film_item)
     }
     </script>
 </body>
