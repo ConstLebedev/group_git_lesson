@@ -1,11 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .static {
+            position: absolute;
+            background: white;
+            height: 250px;
+            width: 200px;
+        }
+
+        .among-us {
+            background-color: white;
+            margin-bottom: 100px;
+        }
+
+        img {
+            margin-top: 60px;
+            width: 10%;
+        }
+
+        .static:hover {
+            opacity: 0;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .card {
+            background-color: brown;
+            padding: 10px;
+            height: 100px;
+            font-size: 50px;
+            justify-content: center;
+            color: white;
+            align-items: center;
+            display: flex;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>кто прочитал тот лох</h1>
+    <div class="among-us">
+
+        <h1 class="static">Амогус</h1>
+        <img class="active" src="https://media1.tenor.com/m/jKwPc55Xi0IAAAAC/among-us.gif">
+    </div>
+
+    <h1 id="header-2">Привет, нн</h1>
+    <ol id="films-list">
+
+    </ol>
+    <script>
+        let name = prompt('как тебя зовут?')
+        let h1 = document.getElementById('header-2')
+        if (name != null && name != "") {
+            h1.innerText = 'Привет, ' + name
+        } else {
+            sex = prompt("укажите ваш пол( м / ж)")
+            if (sex == 'ж') {
+                h1.innerText = 'Привет, незнакомка'
+            } else if (sex == 'м') {
+                h1.innerText = 'Привет, незнакомец'
+            } else {
+                h1.innerText = 'Самый умный(ая)?'
+            }
+        }
+
+
+        content = document.querySelector(".content")
+        console.log(content)
+
+        let list = document.querySelector("#films-list")
+        for (i=0;i<5;i++) {
+      
+            if (i == 0) {
+                message = "Укажите ваш любимый фильм"
+            } else if(i==4) {
+message = "Укажите фильм, который вы ненавидите"
+            } else {
+                message = "так уж и быть напиши ещё"
+            }
+            name_film = prompt(message)
+            let film_item = document.createElement('li')
+            film_item.innerText = name_film
+list.append(film_item)
+
+        }
+    </script>
+
 </body>
+
 </html>
