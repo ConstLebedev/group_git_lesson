@@ -16,19 +16,24 @@
         }
         .content{
             display: grid;
-            grid-template-columns: 3;
+            grid-template-columns: repeat(3, 1fr);
         }
         .card{
-            background-color: brown;
+            background-color: rgb(223, 218, 161);
             padding: 5px;
             margin: 5px;
             height: 100px;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     <h1 id="header2">Привет, незнакомец</h1>
-    <h1>Ты сладуля</h1>
+    <h1>Твои любимые фильмы</h1>
+    <ol id= "films-list"></ol>
     <section class="content">
        
 
@@ -52,14 +57,21 @@
                 h1.innerText = "Привет, бесполое существо"
             }
         }
-        card = document.createElement('div')
-        card.classList.add('card')
-        content = document.getElementsByClassName('content')[0]
-        for ( let i=0; i<9; i++){
-            content.append(card)
+        
+        
+        let list = document.querySelector("#films-list")
+        for ( let i=0; i<5; i++){
+            let film_item = document.createElement("li")
+            if (i ==0)
+               message = "Укажите ваш любимый фильм;"
+            else if (i==4)
+            message = "И последний фильм:"
+            else 
+               message = "Укажите еще один фильм"
+            film_item.innerText = prompt(message)
+            list.append(film_item)
 
         }
-
     </script>
 </body>
 </html>
