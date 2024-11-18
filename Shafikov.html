@@ -26,18 +26,30 @@
   <img class="d" src="https://avatars.mds.yandex.net/i?id=a16d75160a6e8a8c57eb36557ce0656a5ace449c-9285955-images-thumbs&n=13">
 
     <script>
-      document.addEventListener("mousemove", roketa)
+      //document.addEventListener("mousemove", roketa)
+      //const img = document.querySelector("img")
+      //img.style.position = "fixed"
+      //const rect =img.getBoundingClientRect()
+      //const w = rect.width
+      //const h = rect.height
+      //function roketa(event){
+       //  event.clientX
+        // event.clientY
+        // img.style.left = event.clientX - w / 2+ "px"
+        // img.style.top = event.clientY - h /2 + "px"
+      //} 
+
+        
       const img = document.querySelector("img")
-      img.style.position = "fixed"
       const rect =img.getBoundingClientRect()
       const w = rect.width
       const h = rect.height
-      function roketa(event){
-         event.clientX
-         event.clientY
-         img.style.left = event.clientX - w / 2+ "px"
-         img.style.top = event.clientY - h /2 + "px"
-      } 
+      img.addEventListener("mousemove", roketa)
+      img.style.position = "fixed"
+      function roketa(event) {
+         img.style.left =Math.max (0, window.innerWidth * Math.random() - w) + "px"
+         img.style.top = Math.max(0, innerHeight * Math.random() - h) + "px"
+      }
     </script>
 </body>
 </html>
