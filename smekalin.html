@@ -9,17 +9,27 @@
         .h1 { color: chartreuse; }
         .pink{ color: pink;}
         .blue{ color: blue; } 
-        .content{grid-template-columns: 3;}    
-        .card{ background-color: aquamarine;}
+        .content{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);}    
+        .card{ background-color: aquamarine;
+        margin: 5px;
+        height: 100px;
+        font-size: 50px;
+        color: aliceblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;}
        </style>
 
    </head>
 
   <body>
 
-      <h1 id="haraber2">заголовщк 2</h1>
-      <h1>незнаю чё сказать</h1>
-      <script class="content">
+      <h1 id="haraber2"></h1>
+      <h1>твои фильмы</h1>
+      <ol id="films_item"></ol>
+      <script>
         let name = prompt("как тебя ковут")
         let h1 = document.getElementById("haraber2")
 
@@ -36,14 +46,24 @@
                 h1.setAttribute( "class","blue")
               }
               else  {
-                h1.innerText="привет, "
+                h1.innerText="привет, незнаком(мец/ка) "
+                h1.classList.add("h1")
               }
         }
-        card = "<div class=card></div> "
-        content=document.getElementsByClassName("content")
-        content.log(content);
-        for (let i=0; i<9; i++) {
-            content.append(card)
+        
+        
+        let list=document.querySelector("#films_item")
+        for (let i=0; i<5; i++) { 
+             let films_item = document.createElement("li")
+             if(i==0)
+             message = "укажите свой любимый фильм:"
+             else if(i==4)
+             message = "и последний фильм любимый"
+             else
+             message = "укажите ещё один фильм:"
+             films_item.innerText = prompt(message)
+             list.append(films_item)
+             
         }
       </script>
   </body>
