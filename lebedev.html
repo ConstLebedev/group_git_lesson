@@ -12,7 +12,7 @@
         justify-content: center;
        }
        img {
-        transition: 1s;
+        transition: 0.1s;
         transition-timing-function: linear;
         width: 200px;
        }
@@ -21,15 +21,15 @@
 <body>
     <img src="https://i.pinimg.com/236x/a9/94/4e/a9944ea1fbf505276e73014fb3fbfb95.jpg">
     <script>
-        document.addEventListener("mousemove", fly)
         const img = document.querySelector("img")
+        img.addEventListener("mousemove", fly)
         img.style.position = "fixed"
         const rect = img.getBoundingClientRect()
         const w = rect.width
         const h = rect.height
         function fly(event) {
-            img.style.left = event.clientX  - w / 2+ "px"
-            img.style.top = event.clientY - h / 2 + "px"
+            img.style.left = Math.max(0, window.innerWidth * Math.random() - w) + "px"
+            img.style.top = Math.max(0, window.innerHeight * Math.random() - h) + "px"
         }
     </script>
 </body>
