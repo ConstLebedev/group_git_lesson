@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .red {
-            color: red;
-        }
-        .content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-        .card{
-            background-color: rgb(0, 0, 0);
-            margin: 5px;
-            height: 100px;
-            font-size: 50px;
-            color: aliceblue;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+<style>
+  body {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .d {
+    height: 50px;
+
+  }
+
+  img {
+    /* transition: 2s; */
+  }
+</style>
+
 <body>
-    <h1 id="header2">Привет</h1>
-<h1>твои фильмы
-    
-</h1>
-<ol id="films-list"></ol>
-<section class="content">
-</section>
-    <script>
-        let name = prompt("ты сделал уроки?")
-        let h1 = document.getElementById("header2")
-        if(name !=null) {
-        h1.innerText = 'привет,' + name 
-        } else {
-            sex = prompt("ладно пропускаю")
-            if (sex == "ж") {
-                h1.innerText = "привет чубака"
-                h1.classList.add("red")
-                h1.setAttribute("class",)
-            } else if (sex == "м") {
-                 h1.innerText = "привет чубака"
-            } else {
-                 h1.innerText = "привет чурка"
-            }
-        }
-        let films = ["момо", "гари поттер", "ХАТИКО", "ОНО"]
-        let list = document.querySelector("#films-list")
-        for(let i=0; i<5; i++) {
-            let film_item = document.createElement("li")
-            if(i == 0)
-            message = "укажите свой любимый фильм:"
-        else if(i == 4)
-            message = "и последний:"
-        else
-        message = "укажите ещё один фильм:"
-            film_item.innerText = promt(massage)
-            list.append(film_item)
+  <img class="d" src="https://highstar.ru/pictures/watermelon/05.jpg">
 
-}
+  <script>
 
-     </script>
+    let img = document.querySelector("img")
+    img.style.position = "fixed"
+    img.style.top = "0px"
+    img.style.left = Math.random() * window.innerWidth + "px"
+
+    window.addEventListener("load", () => setTimeout(fall, 10, 1))
+
+    function fall(d) {
+      y = parseInt(img.style.top.slice(0, -2))
+      if (y < window.innerHeight - 50) {
+        img.style.top = parseInt(img.style.top.slice(0, -2)) + d + 'px'
+        y = parseInt(img.style.top.slice(0, -2))
+        setTimeout(fall, 10, d + 0.2);
+      } else {
+          img.remove();
+          img = document.createElement("img")
+          img.src ="https://highstar.ru/pictures/watermelon/05.jpg"
+          document.append(img);
+          img.style.position
+          img.style.top = '0px' 
+          img.style.left = Math.random() * window.innerWidth + "px"
+        // setTimeout(fall,10, d + 0.1)
+      }
+
+
+
+    }
+  </script>
 </body>
+
 </html>
