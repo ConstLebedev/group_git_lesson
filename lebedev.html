@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-       body {
+      body {
         display: flex;
         height: 100vh;
         align-items: center;
         justify-content: center;
-       }
-       img {
-        transition: 0.1s;
+      }
+      img {
+        /* transition: 0.1s; */
         transition-timing-function: linear;
         width: 200px;
-       }
+      }
     </style>
-</head>
-<body>
-    <img src="https://i.pinimg.com/236x/a9/94/4e/a9944ea1fbf505276e73014fb3fbfb95.jpg">
+  </head>
+  <body>
+    <img src="https://www.denemecoz.com/sinavlar/ilkokul/2-karpuz-en.jpg" />
     <script>
-        const img = document.querySelector("img")
-        img.addEventListener("mousemove", fly)
-        img.style.position = "fixed"
-        const rect = img.getBoundingClientRect()
-        const w = rect.width
-        const h = rect.height
-        function fly(event) {
-            img.style.left = Math.max(0, window.innerWidth * Math.random() - w) + "px"
-            img.style.top = Math.max(0, window.innerHeight * Math.random() - h) + "px"
+      var img = document.querySelector("img");
+      img.style.position = "fixed";
+      img.style.top = "-120px";
+      img.style.left = Math.random() * window.innerWidth + "px";
+
+      window.addEventListener("load", setTimeout(fall, 10, 1));
+
+      function fall(d) {
+        y = parseInt(img.style.top.slice(0, -2));
+        if (y < window.innerHeight - 50) {
+          img.style.top = parseInt(img.style.top.slice(0, -2)) + d + "px";
+          y = parseInt(img.style.top.slice(0, -2));
+          setTimeout(fall, 10, d + 0.2);
+        } else {
+          img.remove();
+          img = document.createElement("img");
+          img.src =
+            "https://www.denemecoz.com/sinavlar/ilkokul/2-karpuz-en.jpg";
+          document.append(img);
+          img.style.position = "fixed";
+          img.style.top = "-120px";
+          img.style.left = Math.random() * window.innerWidth + "px";
+        //   setTimeout(fall, 10, 1);
         }
+      }
     </script>
-</body>
+  </body>
 </html>
