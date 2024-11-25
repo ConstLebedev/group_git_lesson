@@ -6,38 +6,45 @@
     <title>Document</title>
 </head>
 <style>
-    body{
-        display: flex;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-    }
+.d{
+    width: 150px;
+}
 
-    .d{
-      height: 50px;
-
-    }
-
-    img{
-        transition: 1s;
-    }
+img{
+    transition: 0.1s;
+    transition-timing-function: linear;
+    width: 200px;
+}
 </style>
 <body> 
-  <img class="d" src="https://avatars.mds.yandex.net/i?id=a16d75160a6e8a8c57eb36557ce0656a5ace449c-9285955-images-thumbs&n=13">
-
+    <img class="d" src="https://avatars.mds.yandex.net/i?id=61048ea6e58abbb984e58a67c7876934da103262-10629685-images-thumbs&n=13">
     <script>
-      document.addEventListener("mousemove", roketa)
-      const img = document.querySelector("img")
-      img.style.position = "fixed"
-      const rect =img.getBoundingClientRect()
-      const w = rect.width
-      const h = rect.height
-      function roketa(event){
-         event.clientX
-         event.clientY
-         img.style.left = event.clientX - w / 2+ "px"
-         img.style.top = event.clientY - h /2 + "px"
-      } 
+     let img = document.querySelector("img")
+     img.style.position = "fixed"
+     img.style.top = "-100px"
+     img.style.left = Math.random() * window.innerHeight + "px"
+
+    window.addEventListener("load", setTimeout(fall, 30, 1));
+
+    function fall(d){
+        y = parseInt(img.style.top.slice(0, -2))
+        if (y < window.innerHeight - 50) {
+            img.style.top = parseInt (img.style.top.slice(0 , -2)) + 50 + 'px'
+            y = parseInt (img.style.top.slice(0, -2))
+            setTimeout(fall, 30, d + 0.1)
+        } else {
+            img.remove()
+            img = document.createElement("img")
+            img.src = "https://avatars.mds.yandex.net/i?id=61048ea6e58abbb984e58a67c7876934da103262-10629685-images-thumbs&n=13"
+            img.style.position = "fixed";
+            img.style.top = "-120px";
+             img.style.left = Math.random * window.innerHeight + "px"
+
+            //setTimeout(fall, 10, d + 0.1)
+        }
+        
+    }
+
     </script>
 </body>
 </html>
