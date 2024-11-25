@@ -1,57 +1,29 @@
-<!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>                                                                                                                                                                                                                                                                                                                                                                               
+<html lang="en">                                                                                                                                                                                                                                                                                                                                                                               
+<head>                                                                                                                                                                                                                                                                                                                                                                               
+  <meta charset="UTF-8">                                                                                                                                                                                                                                                                                                                                                                               
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                                                                                                                                                                                                                                                                                               
+  <title>Document</title>                                                                                                                                                                                                                                                                                                                                                                               
+</head>                                                                                                                                                                                                                                                                                                                                                                               
+<body>                                                                                                                                                                                                                                                                                                                                                                               
+  <form action="" method="get" name="ter">                                                                                                                                                                                                                                                                                                                                                                               
+    <input type="text" name="login">                                                                                                                                                                                                                                                                                                                                                                               
+    <input type="submit">                                                                                                                                                                                                                                                                                                                                                                               
+  </form>                                                                                                                                                                                                                                                                                                                                                                               
+  <script>                                                                                                                                                                                                                                                                                                                                                                               
+    const form = document.forms.ter                                                                                                                                                                                                                                                                                                                                                                               
+    
+    form.login.addEventListener("input", on_input)                                                                                                                                                                                                                                                                                                                                                                               
+    form.color.addEventListener('input',change_color)                                                                                                                                                                                                                                                                                                                                                                               
+    const out = document.querySelector( ".output")                                                                                                                                                                                                                                                                                                                                                                               
 
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-       <style>
-        .bady{
-          display: flex;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-        }
+    function                                                                                                                                                                                                                                                                                                                                                                               
 
-        img{
-          height: 200px;
-        /* transition: 3s; */
-        }
-       </style>
-
-   </head>
-
-  <body>
-    <img src="https://media.istockphoto.com/id/947951838/ru/фото/арбуз-изолированный.jpg?s=612x612&w=0&k=20&c=1Riafea-D8zNTCDDZlAN0RmJca4yW1n7m8I4k8Co4oc=" alt="">
-      <script>
-      
-      const img = document.querySelector("img")
-      img.style.position = "fixed"
-      img.style.top = '-120px'
-      img.style.left = Math.random() * window.innerHeight +'px'
-      window.addEventListener( "lond",setTimeout(fall, 10, 1))
-      function fall(d) {
-        y =parseInt(img.style.top.slice(0, -2));
-        if (y < window.innerHeight -50 )  {
-          img.style.top =parseInt(img.style.top.slice(0, -2)) +d+ "px";
-          y =parseInt(img.style.top.slice(0, -2));
-         setTimeout(fall, 10, d + 0.2);
-        }         
-         else {
-        
-          img.remove();
-          img = document.createElement("img");
-          img.src =" https://media.istockphoto.com/id/947951838/ru/фото/арбуз-изолированный.jpg?s=612x612&w=0&k=20&c=1Riafea-D8zNTCDDZlAN0RmJca4yW1n7m8I4k8Co4oc=";
-          document.append(img);
-          img.style.position = "fixed";
-          img.style.top = '-120px';
-          img.style.left = Math.random() * window.innerHeight +'px';
-          setTimeout(fall, 10, 1);
-        }
-        
-      }
-        
-      </script>
-  </body>
-
-</html>
+    function on_input(event) {                                                                                                                                                                                                                                                                                                                                                                               
+      event.preventDafault()                                                                                                                                                                                                                                                                                                                                                                               
+      out.innerText= form.login.value                                                                                                                                                                                                                                                                                                                                                                               
+      console.log(form.login.value)                                                                                                                                                                                                                                                                                                                                                                               
+    }                                                                                                                                                                                                                                                                                                                                                                               
+  </script>                                                                                                                                                                                                                                                                                                                                                                               
+</body>                                                                                                                                                                                                                                                                                                                                                                               
+</html>                                                                                                                                                                                                                                                                                                                                                                               
