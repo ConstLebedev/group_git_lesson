@@ -1,61 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        h1 {
-            color: cadetblue;
-        }
-        .pink {
-            color: pink;
-        }
-        .blue {
-            color: blue;
-        }
-        .content {
-            display: grid;
-            grid-template-columns: 3;
-            gap: 10px;            
-        }
-        .card {
-            background-color: brown;
-            margin: 5px;
-            height: 100px;
-        }
+      .output {
+        font-size: 10em;
+        color: chartreuse;             
+      }
+      .container {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
-</head>
-<body>
-    <h1 id="header2">Привет, незнакомец</h1>
-    <h1>Мне пока нечего вам рассказать</h1>
-    <section class="content">
-        
-    </section>
-    <script>
-        let name = prompt('Как тебя зовут?')
-        let h1 = document.getElementById('header2')
-        if (name != null && name != "") {
-            h1.innerText = 'Привет, ' + name
-        } else {
-            sex = prompt("укажите ваш пол (м / ж)")
-            if (sex == 'ж') {
-                h1.innerText = 'Привет, незнакомка'
-                h1.classList.add('pink')
-            } else if (sex == 'м') {
-                h1.innerText = 'Привет, незнакомец' 
-                h1.setAttribute('class', 'blue')
-            } else {
-                h1.innerText = 'Привет, бесполое существо' 
-            }
-        }
+  </head>
+  <body>
+    <form action="" method="get" name="testform">
+      <input type="text" name="login">
+      <input type="color" name="color">
+      <input type="range" name="angle" min="-90" max="90">
+      <input type="submit" name="submit">
+    </form>
+    <div class="container">
+      <div class="output"></div>
+    </div>
+    <script>      
+      const form = document.forms.testform      
+      
+      form.submit.addEventListener('click', on_input)
+      form.color.addEventListener('input', change_color)
+      form.angle.addEventListener('input', rotate)
+      const out = document.querySelector('.output')
 
-        card = document.createElement('div')
-        card.classList.add('card')
-        content = document.getElementsByClassName('content')[0]        
-        for (let i=0; i<9; i++) {
-            content.append(card)  // вот тут что-то не так
-        }
+      function rotate() {
+        out.style.transform = `rotate(${form.angle.value}deg)`        
+      }
+
+      function on_input(event) {
+        event.preventDefault()
+        out.innerText = form.login.value
+      }
+
+      function change_color() {        
+        out.style.color = form.color.value
+      }
     </script>
-</body>
+  </body>
 </html>

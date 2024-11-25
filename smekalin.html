@@ -1,51 +1,29 @@
-<!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>                                                                                                                                                                                                                                                                                                                                                                               
+<html lang="en">                                                                                                                                                                                                                                                                                                                                                                               
+<head>                                                                                                                                                                                                                                                                                                                                                                               
+  <meta charset="UTF-8">                                                                                                                                                                                                                                                                                                                                                                               
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                                                                                                                                                                                                                                                                                               
+  <title>Document</title>                                                                                                                                                                                                                                                                                                                                                                               
+</head>                                                                                                                                                                                                                                                                                                                                                                               
+<body>                                                                                                                                                                                                                                                                                                                                                                               
+  <form action="" method="get" name="ter">                                                                                                                                                                                                                                                                                                                                                                               
+    <input type="text" name="login">                                                                                                                                                                                                                                                                                                                                                                               
+    <input type="submit">                                                                                                                                                                                                                                                                                                                                                                               
+  </form>                                                                                                                                                                                                                                                                                                                                                                               
+  <script>                                                                                                                                                                                                                                                                                                                                                                               
+    const form = document.forms.ter                                                                                                                                                                                                                                                                                                                                                                               
+    
+    form.login.addEventListener("input", on_input)                                                                                                                                                                                                                                                                                                                                                                               
+    form.color.addEventListener('input',change_color)                                                                                                                                                                                                                                                                                                                                                                               
+    const out = document.querySelector( ".output")                                                                                                                                                                                                                                                                                                                                                                               
 
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-       <style>
-        .h1 { color: chartreuse; }
-        .pink{ color: pink;}
-        .blue{ color: blue; } 
-        .content{grid-template-columns: 3;}    
-        .card{ background-color: aquamarine;}
-       </style>
+    function                                                                                                                                                                                                                                                                                                                                                                               
 
-   </head>
-
-  <body>
-
-      <h1 id="haraber2">заголовщк 2</h1>
-      <h1>незнаю чё сказать</h1>
-      <script class="content">
-        let name = prompt("как тебя ковут")
-        let h1 = document.getElementById("haraber2")
-
-        if (name != null && name !="") {
-            h1.innerText = "привет " + name
-        } else{
-            sex=prompt("привет какого ты пола(м/ж)")
-              if( sex=="ж") {
-              h1.innerText="привет, незнакомка"
-              h1.classList.add("pink")
-              }
-              else if( sex=="м") {
-                h1.innerText="привет, незнакомец"
-                h1.setAttribute( "class","blue")
-              }
-              else  {
-                h1.innerText="привет, "
-              }
-        }
-        card = "<div class=card></div> "
-        content=document.getElementsByClassName("content")
-        content.log(content);
-        for (let i=0; i<9; i++) {
-            content.append(card)
-        }
-      </script>
-  </body>
-
-</html>
+    function on_input(event) {                                                                                                                                                                                                                                                                                                                                                                               
+      event.preventDafault()                                                                                                                                                                                                                                                                                                                                                                               
+      out.innerText= form.login.value                                                                                                                                                                                                                                                                                                                                                                               
+      console.log(form.login.value)                                                                                                                                                                                                                                                                                                                                                                               
+    }                                                                                                                                                                                                                                                                                                                                                                               
+  </script>                                                                                                                                                                                                                                                                                                                                                                               
+</body>                                                                                                                                                                                                                                                                                                                                                                               
+</html>                                                                                                                                                                                                                                                                                                                                                                               

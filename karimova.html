@@ -2,39 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        h1 {
-            color: chocolate;
-        }
-        .pink {
-            color:pink;
-        }
-        .blue {
-            color:blue
+        img {
+            transition: 0.1s;
+            transition-timing-function: linear;
+            width: 200px;
         }
     </style>
 </head>
 <body>
-    <h1 id="header2">Заголовок 2</h1>
-    <h1>Мне пока нечего рассказать</h1>
+    <img src="https://r.mt.ru/r8/photoEE44/20583721350-0/jpg/bp.webp" alt="">
     <script>
-        let name = prompt('Как тебя зовут?')
-        let h1 = document.getElementById('header2')
-        if (name !=null&& name != "") {
-            h1.innerText = 'Привет, ' + name
-        } else{
-            sex = prompt('укажите ваш пол (м / ж)')
-            h1.classList.add ('pink')
-            if (sex == 'ж') {
-                h1.innerText ='Привет, незнакомка'
-            } else if (sex == 'м') {
-               h1.innerText = 'Привет,незнакомец'
-            } else { 
-            h1.innerText= 'Привет,бесполое существо'            }
-            }
-        
-    </script>
+        const img = document.querySelector("img")
+        img.addEventListener("mousemove",fly)
+        img.style.position = "fixed"
+      const rect= img.getBoundingClientRect()
+       const w = rect.width
+       const h = rect.height
+        function fly(event) {         
+            img.style.left =  Math.max(0, Math.random() * window.innerWidth - w / 2) + "px"
+            img.style.top = Math.max(0, window.innerHeight* Math.random() -h ) + "px"
+        }
+    </script>        
 </body>
 </html>

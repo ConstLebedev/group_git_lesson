@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .red {
-            color: red;
-        }
-        .content {
-            display: grid;
-            grid-template-columns: 3;
-        }
-        .card{
-            background-color: antiquewhite;
-            margin: 5px;
-            height: 100px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+<style>
+  body {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .d {
+    height: 50px;
+
+  }
+
+  img {
+    /* transition: 2s; */
+  }
+</style>
+
 <body>
-    <h1 id="header2">Привет, чуркстанец</h1>
-<h1>да ты крутой</h1>
-<section class="content">
-</section>
-    <script>
-        let name = prompt("ты любишь женщин!?!??!?!??!??!?!")
-        let h1 = document.getElementById("header2")
-        if(name !=null) {
-        h1.innerText = 'привет,' + name 
-        } else {
-            sex = prompt("ты женщина!??!?!??!!!??!???")
-            if (sex == "ж") {
-                h1.innerText = "привет чубака"
-                h1.classList.add("red")
-                h1.setAttribute("class",)
-            } else if (sex == "м") {
-                 h1.innerText = "привет чубака"
-            } else {
-                 h1.innerText = "привет чурка"
-            }
-        }
-        card = document.createElement('div')
-        card.classList.add('card')
-        content = document.getElementsByClassName('content')[0]
-for(let i=0; i<9; i++) {
-    content.appendChild(card)// тут что-то не так
-}
-     </script>
+  <img class="d" src="https://highstar.ru/pictures/watermelon/05.jpg">
+
+  <script>
+
+    let img = document.querySelector("img")
+    img.style.position = "fixed"
+    img.style.top = "0px"
+    img.style.left = Math.random() * window.innerWidth + "px"
+
+    window.addEventListener("load", () => setTimeout(fall, 10, 1))
+
+    function fall(d) {
+      y = parseInt(img.style.top.slice(0, -2))
+      if (y < window.innerHeight - 50) {
+        img.style.top = parseInt(img.style.top.slice(0, -2)) + d + 'px'
+        y = parseInt(img.style.top.slice(0, -2))
+        setTimeout(fall, 10, d + 0.2);
+      } else {
+          img.remove();
+          img = document.createElement("img")
+          img.src ="https://highstar.ru/pictures/watermelon/05.jpg"
+          document.append(img);
+          img.style.position
+          img.style.top = '0px' 
+          img.style.left = Math.random() * window.innerWidth + "px"
+        // setTimeout(fall,10, d + 0.1)
+      }
+
+
+
+    }
+  </script>
 </body>
+
 </html>
