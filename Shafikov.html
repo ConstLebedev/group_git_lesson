@@ -1,94 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
- <style>
-    .w{
-      color: rgb(184, 172, 150);
-    }
-
-    .b{
-      color: blue;
-    }
-
-    .r{
-      color: red;
-    }
-
-    .estuje{
-        color: blue;
-    }
-
-    .pink{
-        color: blue;
-    }
-
-    .content {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-
-    .card{
-        background-color: rgb(0, 0, 0);
-        margin: 5px;
-        height: 100px;
-        font-size: 30px;
-        color: rgb(255, 0, 0);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-
- </style>
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1 class="w">Бам бам бам бам</h1>
-    <h1 class="b" id="header2">1234 </h1>
-    <h1 class="r">Любимая техника:</h1>
-    <ol id="Texnika_list">
-    
-    </ol>
+<style>
+.d{
+    width: 150px;
+}
 
-    <section class="content">
-      
-    </section>
+img{
+    transition: 0.1s;
+    transition-timing-function: linear;
+    width: 200px;
+}
+</style>
+<body> 
+    <img class="d" src="https://avatars.mds.yandex.net/i?id=61048ea6e58abbb984e58a67c7876934da103262-10629685-images-thumbs&n=13">
     <script>
-        
-        let name = prompt('Любишь СУ 27?')
-        let h1 = document.getElementById('header2')
-    if (name !=null) {
-        h1.innerText = 'Мы стреляем по ...' + name
-    }  else {
-        sex = prompt('Стреляем по ... (да/нет)')
-        if (sex == 'нет') {
-            h1.innerText = 'Почему?'
-            h1.setAttribute('class', 'pink')
+     let img = document.querySelector("img")
+     img.style.position = "fixed"
+     img.style.top = "-100px"
+     img.style.left = Math.random() * window.innerHeight + "px"
+
+    window.addEventListener("load", setTimeout(fall, 30, 1));
+
+    function fall(d){
+        y = parseInt(img.style.top.slice(0, -2))
+        if (y < window.innerHeight - 50) {
+            img.style.top = parseInt (img.style.top.slice(0 , -2)) + 50 + 'px'
+            y = parseInt (img.style.top.slice(0, -2))
+            setTimeout(fall, 30, d + 0.1)
+        } else {
+            img.remove()
+            img = document.createElement("img")
+            img.src = "https://avatars.mds.yandex.net/i?id=61048ea6e58abbb984e58a67c7876934da103262-10629685-images-thumbs&n=13"
+            img.style.position = "fixed";
+            img.style.top = "-120px";
+             img.style.left = Math.random * window.innerHeight + "px"
+
+            //setTimeout(fall, 10, d + 0.1)
         }
-
-     else if (sex == 'да') {
-            h1.innerText = 'Мы стреляем по хох...'
-            h1.setAttribute('class', 'estuje')
-        }else{
-            h1.innerText = 'Душнила'
-        } 
-
+        
     }
 
-    let films = ["Т90А", "Т90М", "Паницирь С1", "СПРУТ", "Т80БВМ"]
-    let list = document.querySelector("#Texnika_list")
-    for (let i=0; i<5; i++) {
-        let film_item = document.createElement('li')
-        if(i == 0)
-        message = "Укажите вашу любимую технику:"
-        else if (i == 4)
-         message = "И последняя техника:"
-        film_item.innerText = prompt(message)
-        list.append(film_item)
-    }
     </script>
 </body>
 </html>
