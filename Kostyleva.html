@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h1 {
-            color: burlywood;
+        .output {
+            color: blueviolet;
+            font-size: 10em
         }
-        .pink{
-            color: pink;
-        }
-        .blue{
-            color: blue;
-        }
-        .content{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .card{
-            background-color: rgb(223, 218, 161);
-            padding: 5px;
-            margin: 5px;
-            height: 100px;
-            font-size: 30px;
+
+        .container {
             display: flex;
-            justify-content: center;
+            height: 100vh;
             align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
+
 <body>
-    <h1 id="header2">Привет, незнакомец</h1>
-    <h1>Твои любимые фильмы</h1>
-    <ol id= "films-list"></ol>
-    <section class="content">
-       
-
-
-    </section>
+    <form action="" method="get" name="testform">
+        <label>
+            Текст
+        <input type="text" name="login" id='login'>
+    </label>
+        <label>
+    <input type="color" name="color">
+            Цвет
+        <input type="range" name="angle" min="-90" max="90">
+    </label>
+        <label>
+            Поворот
+        <input type="submit" name="submit">
+    </label>
+        <label>
+            Выравнивание
+        <select name="aligh" id="align">
+            <option value="start">start</option>
+            <option value="center">center</option>
+            <option value="end">end</option>
+        </select>
+        </label>
+    </form>
+    <div class="container">
+        <div class="output"></div>
+    </div>
     <script>
-        let name = prompt("Как тебя зовут")
-        let h1 = document.getElementById("header2")
-        if (name != null && name != "") {
-        h1.innerText = "Привет, " + name
+        const form = document.forms.testform
+        form.submit.addEventListener("click", on_input)
+        form.angle.addEventListener("input", rotate)
+        form.color.addEventListener("input", change_color)
+        form.align.addEventListener("input", change_halign)
+        const out = document.querySelector(".output")
+        const cont = document.querySelector(".container")
+
+        function rotate() {
+            out.style.transform = `rotate(${form.angle.value}deg)`
         }
-        else {
-            sex = prompt("Укажите ваш пол (м / ж)")
-            if (sex == "ж") {
-                h1.innerText = "Привет, незнакомка"
-                h1.classList.add("class", "pink")
-            } else if (sex == "м") {
-                h1.innerText = "Привет, незнакомец"
-                h1.setAttribute("class", "blue")
-            } else {
-                h1.innerText = "Привет, бесполое существо"
-            }
+
+        function on_input(event) {
+            event.preventDefault()
+            out.innerText = form.login.value
         }
-        
-        
-        let list = document.querySelector("#films-list")
-        for ( let i=0; i<5; i++){
-            let film_item = document.createElement("li")
-            if (i ==0)
-               message = "Укажите ваш любимый фильм;"
-            else if (i==4)
-            message = "И последний фильм:"
-            else 
-               message = "Укажите еще один фильм"
-            film_item.innerText = prompt(message)
-            list.append(film_item)
+        function change_color() {
+            out.style.color = form.color.value
+        }
+        function change_halign(){
+            cont.style.justifyContent = form.align.value
 
         }
     </script>
 </body>
+
 </html>
