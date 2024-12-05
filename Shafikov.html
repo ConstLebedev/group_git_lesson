@@ -12,60 +12,65 @@
         color: NONE;
     }
 
-    .container {
-        display: flex;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-    }
+    .container {}
 </style>
 
 <body>
-    <form action="" method="get" name="testform">
-        <label>Текст
-            <input type="text" name="login">
+    <form action="" method="get" name="arrayform">
+        <label>Элемент
+            <input type="text" name="element">
         </label>
         <label>Цвет
             <input type="color" name="color">
         </label>
-        <label>Поворот
-        <input type="range" name="angle" min="-360" max="360">
-        </label>
-        <input type="submit" name="submit">
-            <select name="align" id="aling">
-        <option value="start">left</option>
-        <option value="center">center</option>
-        <option value="end">right</option>
-
-        </select>
+        <input type="button" name="on_end" value="В конец" />
+        <input type="button" name="on_start" value="В начало" />
     </form>
-    <div class="output container"></div>
+    <div class="container">
+        <ul class="items"></ul>
+    </div>
     <script>
-        const form = document.forms.testform
-        form.submit.addEventListener('click', on_input)
-        form.color.addEventListener('input', change_color)
-        form.angle.addEventListener('input', rotate)
-        form.align.addEventListener('input', change_halign)
-        const out = document.querySelector('.output')
-        const cont = document.querySelector('.container')
+        const form = document.forms.arrayform
+        form.on_end.addEventListener("click", add_end);
+        form.on_start.addEventListener("click", add_start);
+        const cont = document.querySelector('.container');
+        const items = document.querySelector('.items')
+        const array = [];
 
-
-        function on_input(event) {
-            event.preventDefault()
-            out.innerText = form.login.value
+        function createListItem(value) {
+            const li = document.createElement('li')
+            li.innerText = value
+            return li
+        
         }
 
-        function rotate() {
-            out.style.transform = `rotate(${form.angle.value}deg)`
+        function refill_items(){
+         items.innerHTML = ""
+         for (elem of array) {
+          const li = createListItem(elem)
+          items.append(li)
         }
-        function change_color(event) {
-            out.style.color = form.color.value
+
+        }
+
+        function add_end(event) {
+            array.push(form.element.value)
+            console.log(array);
+
+            const li = createListItem(form.element.value)
+            items.append(li)
+        }
+
+        function add_start() {
+            array.unshift(form.element.value)
+            console.log(array);
+
+            const li = createListItem(form.element.value)
+            array.push(form.element)
+            refill_items()
         }
 
 
-        function change_halign() {
-            cont.style.justifyContent = form.align.value
-        }
     </script>
 </body>
 
