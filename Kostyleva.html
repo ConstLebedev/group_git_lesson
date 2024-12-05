@@ -22,10 +22,27 @@
 
 <body>
     <form action="" method="get" name="testform">
-        <input type="text" name="login">
-        <input type="color" name="color">
+        <label>
+            Текст
+        <input type="text" name="login" id='login'>
+    </label>
+        <label>
+    <input type="color" name="color">
+            Цвет
         <input type="range" name="angle" min="-90" max="90">
+    </label>
+        <label>
+            Поворот
         <input type="submit" name="submit">
+    </label>
+        <label>
+            Выравнивание
+        <select name="aligh" id="align">
+            <option value="start">start</option>
+            <option value="center">center</option>
+            <option value="end">end</option>
+        </select>
+        </label>
     </form>
     <div class="container">
         <div class="output"></div>
@@ -35,7 +52,9 @@
         form.submit.addEventListener("click", on_input)
         form.angle.addEventListener("input", rotate)
         form.color.addEventListener("input", change_color)
+        form.align.addEventListener("input", change_halign)
         const out = document.querySelector(".output")
+        const cont = document.querySelector(".container")
 
         function rotate() {
             out.style.transform = `rotate(${form.angle.value}deg)`
@@ -47,6 +66,10 @@
         }
         function change_color() {
             out.style.color = form.color.value
+        }
+        function change_halign(){
+            cont.style.justifyContent = form.align.value
+
         }
     </script>
 </body>
