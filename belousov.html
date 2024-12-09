@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-  
-
         .container {
             display: flex;
             height: 100vh;
             align-items: center;
             justify-content: start;
         }
+    .items {
+        height: 20px;
+        text-shadow: 0.5px 0.5px rgb(61, 61, 61);
+    }
     </style>
 </head>
 
@@ -23,46 +25,76 @@
             <input type="text" name="element">
         </label> <label>Цвет
             <input type="color" name="color">
-        </label> 
+        </label>
 
         <input type="button" name="on_end" value="В конец">
         <input type="button" name="on_start" value="В начало">
     </form>
     <div class="container">
-  <ul class="items"></ul>
+        <ul class="items"></ul>
     </div>
     <script>
         const items = document.querySelector('.items')
         const form = document.forms.arrayform
-const array = [];
+
+        const array = from_localstorage() || [];
+document.addEventListener('DOMContentLoaded', refill_item)
         form.on_end.addEventListener('click', add_end)
         form.on_start.addEventListener('click', add_start)
         const cont = document.querySelector(".container")
-        function createListItem(value) {
-        const li = document.createElement('li')
-        li.innerText = value
-        return li
-       }
-       function refill_item() {
-        items.innerHTML = ""
-        for (elem of array) {
-            const li = createListItem(elem)
-            items.append(li)
+        function createListItem(index) {
+            const li = document.createElement('li')
+            li.style.color = array[index].color
+   li.innerHTML = `<div class="item" style="color: ${array[index].color}">
+    ${array[index].text}</div>`
+            li.addEventListener('click', () => remove(index))
+            return li
         }
-       }
+        function refill_item() {
+            items.innerHTML = ""
+            for (let i = 0; i < array.length; i++) {
+                const li = createListItem(i)
+                items.append(li)
+            }
+        }
+        function to_location(obj) {
+            window.localStorage.setItem('array', JSON.stringify(obj))
+        }
+        function from_localstorage() {
+            return JSON.parse(window.localStorage.getItem('array'))
+        }
         function add_end(event) {
-        //    event.preventDefault()
-            array.push(form.element.value)
+            //    event.preventDefault()
+   
+            obj = {
+                text: form.element.value,
+                color: form.color.value
+             
+            }
+            array.push(obj)
             console.log(array)
-  refill_item()
+            form.color.value
+            to_location(array)
+            refill_item()
         }
         function add_start(event) {
-        //    event.preventDefault()
-        array.unshift(form.element.value)
+            //    event.preventDefault()
+            obj = {
+                text: form.element.value,
+                color: form.color.value
+             
+            }
+            array.unshift(obj)
+
             console.log(array)
-refill_item()
+            to_location(array)
+            refill_item()
         }
-   
+        function remove(i) {
+            array.splice(i, 1)
+            to_location(array)
+            refill_item()
+        }
     </script>
 </body>
 
