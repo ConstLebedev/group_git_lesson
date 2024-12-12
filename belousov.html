@@ -6,66 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        .output {
-            font-size: 10em;
-        }
-
         .container {
             display: flex;
             height: 100vh;
             align-items: center;
             justify-content: start;
         }
+    .items {
+        height: 20px;
+        text-shadow: 0.5px 0.5px rgb(61, 61, 61);
+    }
     </style>
 </head>
 
 <body>
-    <form action="" method="get" name="testform">
-        <label>Текст
-            <input type="text" name="login">
+    <form action="" method="get" name="arrayform">
+        <label>Элемент
+            <input type="text" name="element">
         </label> <label>Цвет
             <input type="color" name="color">
-        </label> <label>Поворот
-            <input type="range" name="angle" min="-90" max="90">
-        </label> <label>Выравнивание
-
-            <select name="aling" id="aling">
-
-
-                <option value="start">left</option>
-                <option value="center">center</option>
-                <option value="end">right</option>
-            </select>
         </label>
 
-        <input type="submit" name="submit">
+        <input type="button" name="on_end" value="В конец">
+        <input type="button" name="on_start" value="В начало">
     </form>
     <div class="container">
-        <div class="output"></div>
+        <ul class="items"></ul>
     </div>
     <script>
-        const form = document.forms.testform
+        const items = document.querySelector('.items')
+        const form = document.forms.arrayform
 
-        form.submit.addEventListener('click', on_input)
-        form.color.addEventListener('input', change_color)
-        form.angle.addEventListener('input', rotate)
-        form.aling.addEventListener('input', change_haling)
-        const out = document.querySelector('.output')
+        const array = from_localstorage() || [];
+document.addEventListener('DOMContentLoaded', refill_item)
+        form.on_end.addEventListener('click', add_end)
+        form.on_start.addEventListener('click', add_start)
         const cont = document.querySelector(".container")
-        function rotate() {
-            out.style.transform = `rotate(${form.angle.value}deg)`
+        function createListItem(index) {
+            const li = document.createElement('li')
+            li.style.color = array[index].color
+   li.innerHTML = `<div class="item" style="color: ${array[index].color}">
+    ${array[index].text}</div>`
+            li.addEventListener('click', () => remove(index))
+            return li
         }
+        function refill_item() {
+            items.innerHTML = ""
+            for (let i = 0; i < array.length; i++) {
+                const li = createListItem(i)
+                items.append(li)
+            }
+        }
+        function to_location(obj) {
+            window.localStorage.setItem('array', JSON.stringify(obj))
+        }
+        function from_localstorage() {
+            return JSON.parse(window.localStorage.getItem('array'))
+        }
+        function add_end(event) {
+            //    event.preventDefault()
+   
+            obj = {
+                text: form.element.value,
+                color: form.color.value
+             
+            }
+            array.push(obj)
+            console.log(array)
+            form.color.value
+            to_location(array)
+            refill_item()
+        }
+        function add_start(event) {
+            //    event.preventDefault()
+            obj = {
+                text: form.element.value,
+                color: form.color.value
+             
+            }
+            array.unshift(obj)
 
-        function on_input(event) {
-            event.preventDefault()
-            out.innerText = form.login.value
+            console.log(array)
+            to_location(array)
+            refill_item()
         }
-
-        function change_color() {
-            out.style.color = form.color.value
-        }
-        function change_haling() {
-            cont.style.justifyContent = form.aling.value
+        function remove(i) {
+            array.splice(i, 1)
+            to_location(array)
+            refill_item()
         }
     </script>
 </body>
