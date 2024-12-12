@@ -11,6 +11,11 @@
         align-items: center;
         justify-content: center;
       }
+      
+      .item {
+        padding: 20px;
+        margin: 10px; 
+      }
     </style>
   </head>
   <body>
@@ -32,30 +37,55 @@
     <script>
       const form = document.forms.arrayform;
       
+      document.addEventListener('DOMContentLoaded', refill_items)
       form.on_end.addEventListener("click", add_end);      
       form.on_start.addEventListener("click", add_start);      
       const cont = document.querySelector(".container");
-      const items = document.querySelector('.items')
-      const array = [];
+      const items = document.querySelector('.items');
+      const array = from_localstorage() || [];
 
-      function createListItem(value) {
+      function createListItem(index) {
         const li = document.createElement('li')
-        li.innerText = value
+        li.innerHTML = `<div class="item" style="background-color: ${array[index].color}">
+          ${array[index].text}
+          </div>`        
+        li.addEventListener('click', () => remove(index))
         return li
       }
       function refill_items() {
         items.innerHTML = ""
-        for (elem of array) {
-          const li = createListItem(elem)
+        for (let i=0; i<array.length; i++) {
+          const li = createListItem(i)
           items.append(li)
         }
       }
+      function to_localstorage(obj) {
+        window.localStorage.setItem('array', JSON.stringify(obj))
+      }
+      function from_localstorage() {
+        return JSON.parse(window.localStorage.getItem('array'))
+      }
       function add_end(event) {
-        array.push(form.element.value)
+        obj = {
+          text: form.element.value, 
+          color:form.color.value
+        }
+        array.push(obj)
+        to_localstorage(array)
         refill_items()      
       }
       function add_start() {
-        array.unshift(form.element.value)
+        obj = {
+          text: form.element.value, 
+          color:form.color.value
+        }
+        array.unshift(obj)
+        to_localstorage(array)
+        refill_items()
+      }
+      function remove(i) {
+        array.splice(i, 1)
+        to_localstorage(array)
         refill_items()
       }
     </script>
