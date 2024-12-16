@@ -24,18 +24,19 @@
     
       <div id="tasks" class="col s12">
         <ul class="collection">
-            <li class="collection-item">
-                <i class="material-icons">task</i>
-                Сделать верстку
-            </li>
-            <li class="collection-item">
-                <i class="material-icons">task</i>
-                Написать скрипт
-            </li>
-            <li class="collection-item">
-                <i class="material-icons">task</i>
-                Собрать все вместе
-            </li>
+            <li class="collection-item">  
+              <div class="row">
+                <div class="col s11">
+                  <label>
+                    <input type="checkbox" />
+                    <span>Сделать верстку</span>
+                  </label>
+                </div>
+                <div class="col s1">
+                  <a class="btn-floating red"><i class="material-icons">delete</i></a>
+                </div>
+              </div>
+            </li>            
           </ul>
       </div>
       <div id="completed" class="col s12">
@@ -46,20 +47,9 @@
           </ul>
       </div>
 
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Текст задачи</label>
-            </div>
-            <div class="btn">
-              <span>Добавить</span>              
-            </div>
-          </div>
-        </form>
-      </div>
+      
+        
+      
       
       <div class="fixed-action-btn">
         <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1">
@@ -69,11 +59,23 @@
 
       <div id="modal1" class="modal">
         <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
+          <h4>Создание задачи</h4>
+
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <label for="textarea1">Текст задачи</label>
+                </div>
+              </div>
+            </form>
+          </div>
+
         </div>
+
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          <a href="#!" class="modal-close waves-effect waves-green btn">Создать</a>
         </div>
       </div>
 
