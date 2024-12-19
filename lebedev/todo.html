@@ -24,33 +24,15 @@
     
       <div id="tasks" class="col s12">
         <ul class="collection">
-            <li class="collection-item">  
-              <div class="row">
-                <div class="col s11">
-                  <label>
-                    <input type="checkbox" />
-                    <span>Сделать верстку</span>
-                  </label>
-                </div>
-                <div class="col s1">
-                  <a class="btn-floating red"><i class="material-icons">delete</i></a>
-                </div>
-              </div>
-            </li>            
-          </ul>
+        </ul>
       </div>
+      
       <div id="completed" class="col s12">
-        <ul class="collection">
-            <li class="collection-item">
-                Ничего нет
-            </li>
-          </ul>
+        <ul class="collection">            
+        </ul>
       </div>
 
-      
-        
-      
-      
+     
       <div class="fixed-action-btn">
         <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1">
           <i class="large material-icons">add</i>
@@ -62,10 +44,10 @@
           <h4>Создание задачи</h4>
 
           <div class="row">
-            <form class="col s12">
+            <form id="form" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <textarea id="textarea1" class="materialize-textarea" name="task_text"></textarea>
                   <label for="textarea1">Текст задачи</label>
                 </div>
               </div>
@@ -75,7 +57,7 @@
         </div>
 
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn">Создать</a>
+          <a href="#!" id="submit" class="modal-close waves-effect waves-green btn">Создать</a>
         </div>
       </div>
 
