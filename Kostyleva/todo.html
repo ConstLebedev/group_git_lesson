@@ -24,34 +24,12 @@
     
       <div id="tasks" class="col s12">
         <ul class="collection">
-            <li class="collection-item">
-                <label>
-                  <input type="checkbox" />
-                  <span>Сделать верстку</span>
-                </label>
-                <a class="btn-floating red right"><i class="material-icons">delete</i></a>
-            </li>
-            <li class="collection-item">
-              <label>
-                <input type="checkbox" />
-                <span>Написать скрипт</span>
-              </label>
-            </li>
-            <li class="collection-item">
-              <label>
-                <input type="checkbox" />
-                <span>Собрать все вместе</span>
-              </label>
-                
-                
-            </li>
+           
           </ul>
       </div>
       <div id="completed" class="col s12">
         <ul class="collection">
-            <li class="collection-item">
-                Ничего нет
-            </li>
+            
           </ul>
       </div>
 
@@ -67,10 +45,10 @@
         <div class="modal-content">
           <h4>Создание задачи</h4>
           <div class="row">
-            <form class="col s12">
+            <form id="form"="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <textarea id="textarea1" class="materialize-textarea" name="task_text"></textarea>
                   <label for="textarea1">Text</label>
                 </div>
               </div>
@@ -80,7 +58,7 @@
         </div>
         
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn">Создать</a>
+          <a href="#!" id="submit" class="modal-close waves-effect waves-green btn">Создать</a>
         </div>
       </div>
 
