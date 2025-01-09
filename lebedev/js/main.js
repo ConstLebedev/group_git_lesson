@@ -4,10 +4,12 @@ var instance = M.Tabs.init(tabs);
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
+    update_list()
 });
 
 
-const tasks = [];
+
+const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 const form = document.querySelector('#form')
 const bnt = document.querySelector('#submit')
 const uncompleted = document.querySelector('#tasks > .collection')
@@ -21,29 +23,34 @@ function add_task() {
     }
     tasks.push(task)
     update_list()
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
-function cb_change(event) {
-    console.log(event.target.checked);    
+function cb_change(index) {
+    tasks[index].status = !tasks[index].status    
     update_list()
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
 function update_list() {
     uncompleted.innerHTML = ""
     completed.innerHTML = ""
-    for (t of tasks) {
+    for (let i=0; i<tasks.length; i++) {
+        t = tasks[i]
         const item = document.createElement('li')
         item.className = 'collection-item'
         item.innerHTML = `<div class="row valign-wrapper">
 <div class="col s1">
     <label>
-    <input type="checkbox" ${'checked' ? t.status : ''} />
+    <input type="checkbox" ${t.status ? 'checked' : ''} onclick="cb_change(${i})" />
     <span></span>
     </label>
 </div>
 <div class="col s10">${t.text}</div>
 <div class="right-align">
-    <a class="btn-floating red"><i class="material-icons">delete</i></a>
+    <a class="btn-floating red delete-btn">
+        <i class="material-icons" onclick="delete_task(${i})">delete</i>
+    </a>
 </div>
 </div>
 `
@@ -53,8 +60,10 @@ function update_list() {
             uncompleted.append(item)
         }
     }
-    const cbs = document.querySelectorAll('input[type="checkbox"]')
-    for (cb of cbs) {
-        cb.addEventListener('click', cb_change)
-    }
+}
+
+function delete_task(index) {
+    tasks.splice(index, 1)
+    update_list()
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
