@@ -19,19 +19,19 @@
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#test1">Test 1</a></li>
-        <li class="tab"><a href="#test2">Test 2</a></li>
+        <li class="tab"><a href="#tasks">Test 1</a></li>
+        <li class="tab"><a href="#completed">Test 2</a></li>
       </ul>
     </div>
   </nav>
 
-  <div id="test1" class="col s12">
-
-    <div class="collection">
-     
+  <div id="tasks" class="col s12">
+    <ul class="collection"></ul>
   </div>
 
-  <div id="test2" class="col s12">Test 2</div>
+  <div id="completed" class="col s12">Test 2
+    <ul class="collection"></ul>
+  </div>
 
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large red waves-effect waves-light modal-trigger" href="#modal1">
@@ -40,15 +40,15 @@
   </div>
 
 
-    <!-- Modal Structure -->
+  <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>Modal Header</h4>
       <div class="row">
-        <form class="col s12">
+        <form id="form" class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <textarea id="textarea1" class="materialize-textarea" name="tasks_text"></textarea>
               <label for="textarea1">Текст</label>
             </div>
           </div>
@@ -56,10 +56,8 @@
       </div>
     </div>
 
-    
-
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn">cоздать</a>
+      <a href="#!" id="submit" class="modal-close waves-effect waves-green btn">cоздать</a>
     </div>
   </div>
 
