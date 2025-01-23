@@ -15,9 +15,8 @@ function login(event) {
     const form = document.querySelector('#login_form')    
     const user = users.find((obj) => obj.login === form.login.value)
     if (user && user.password === form.password.value) {
-        const ok = document.createElement('div')
-        ok.innerText = 'Вы авторизованы'
-        document.body.append(ok)
+        localStorage.setItem('user', JSON.stringify(user))
+        document.location.replace('page.html')
     } else {
         const ok = document.createElement('div')
         ok.innerText = 'Неправильное имя пользователя или пароль'
@@ -25,6 +24,15 @@ function login(event) {
     }
 }
 
+
+function get_user() {
+    const user = JSON.parse(localStorage.getItem('user'))
+    return user
+}
+
+function logout() {
+    localStorage.removeItem('user')
+}
 
 const login_btn = document.querySelector('#login_btn')
 login_btn.addEventListener('click', login)
