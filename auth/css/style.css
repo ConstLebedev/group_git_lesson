@@ -1,0 +1,12 @@
+.centred_form {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh;
+}
+
+@media (max-width: 500px) {
+    .centred_form {
+        display: block;
+    }
+}
