@@ -1,77 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h1 {
-            color: burlywood;
-        }
-        .pink{
-            color: pink;
-        }
-        .blue{
-            color: blue;
-        }
-        .content{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .card{
-            background-color: rgb(223, 218, 161);
-            padding: 5px;
-            margin: 5px;
-            height: 100px;
-            font-size: 30px;
+    .container {
             display: flex;
-            justify-content: center;
+            height: 100vh;
             align-items: center;
+            justify-content: center;
+        }
+        .item{
+            padding: 20px;
+            margin: 10px;
+           
         }
     </style>
 </head>
+
 <body>
-    <h1 id="header2">Привет, незнакомец</h1>
-    <h1>Твои любимые фильмы</h1>
-    <ol id= "films-list"></ol>
-    <section class="content">
-       
-
-
-    </section>
+    <form action="" method="get" name="arrayform">
+        <label>
+           Элемент
+        <input type="text" name="element" id='login'>
+    </label>
+        <label>
+            Цвет
+            <input type="color" name="color">
+        
+    </label>
+    <input type="button" name="on_end" value="В конец"/>
+    <input type="button" name="on_start" value="В начало"/>
+    </form>
+    <div class="container">
+        <ul class="items"></ul>
+        </div>
+    </body>
     <script>
-        let name = prompt("Как тебя зовут")
-        let h1 = document.getElementById("header2")
-        if (name != null && name != "") {
-        h1.innerText = "Привет, " + name
+        const form = document.forms.arrayform;
+        const items = document.querySelector(".items")
+        document.addEventListener("DOMContentLoaded", refill_items)
+       form.on_end.addEventListener("click", add_end);
+       form.on_start.addEventListener("click", add_start);
+        const cont = document.querySelector(".container");
+        const array = from_localstorage() || [];
+
+        function createlistItem(index){
+            const li=document.createElement("li")
+            li.innerHTML = `<div class="item" style="background-color: ${array[index].color}">
+                ${array[index].text}
+                </div>`
+
+            li.style.backgroundColor = array[index].color
+            li.addEventListener("click", () => remove (index))
+            return li
         }
-        else {
-            sex = prompt("Укажите ваш пол (м / ж)")
-            if (sex == "ж") {
-                h1.innerText = "Привет, незнакомка"
-                h1.classList.add("class", "pink")
-            } else if (sex == "м") {
-                h1.innerText = "Привет, незнакомец"
-                h1.setAttribute("class", "blue")
-            } else {
-                h1.innerText = "Привет, бесполое существо"
+
+
+       function refill_items(){
+        items.innerHTML = ""
+        for (let i=0; i<array.length; i++){
+            const li = createlistItem(i)
+            items.append(li) 
+        }
+       }
+       function to_localstorage(obj){
+        window.localStorage.setItem("array", JSON.stringify(obj))
+
+       }
+       function from_localstorage(){
+        return  JSON.parse(window.localStorage.getItem("array"))
+       }
+        function add_end(event) {
+            obj = {text: form.element.value,
+                color:form.color.value
             }
-        }
-        
-        
-        let list = document.querySelector("#films-list")
-        for ( let i=0; i<5; i++){
-            let film_item = document.createElement("li")
-            if (i ==0)
-               message = "Укажите ваш любимый фильм;"
-            else if (i==4)
-            message = "И последний фильм:"
-            else 
-               message = "Укажите еще один фильм"
-            film_item.innerText = prompt(message)
-            list.append(film_item)
+            array.push(obj)
+            to_localstorage(array)
+            refill_items()
 
         }
+        function add_start(){
+            obj = {text: form.element.value,
+                color:form.color.value
+            }
+            array.unshift(obj)
+            to_localstorage(array)
+            
+           refill_items()
+        }
+        function remove(i) {
+            array.splice(i, 1)
+            to_localstorage(array)
+            refill_items()
+        }
+        
     </script>
 </body>
+
 </html>

@@ -1,42 +1,64 @@
 <!DOCTYPE html>
- <html lang="en">
+<html lang="en">
 
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-       <style>
-        .bady{
-          display: flex ;
-          height:100vh ;
-          align-items: content;
-          justify-content: content;
-        }
-         img{
-          width: 200px;
-          transition: 0.1s;
-          transition-timing-function: linear;
-         }
-       
-       </style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .container {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
 
-   </head>
+<body>
+  <form action="" method="get" name="arrayform">
+    <label>
+      текст
+      <input type="text" name="element">
+    </label>
+    <label></label>
+    цвет
+    <input type="color" name="color">
+    </label>
+    <input type="submit" value="ok" name="submit">
+  </form>
+  <div class="container">
+    <div class="output"></div>
+  </div>
+  <script>
 
-  <body>
-      <img src="https://thumbs.dreamstime.com/b/stag-beetle-nice-isolated-white-background-31583141.jpg" >
-      <script>
-        const img = document.querySelector("img")
-        img.addEventListener("mousemove", fly)
-      img.style.position = "fixed"
-      const rect = img.getBoundingClientRect()
-      const w = rect.width
-      const h = rect.height
-      function fly(event) {
-        img.style.left =Math.max(0, window.innerWidth*Math.random()-w)+"px"
-        img.style.top = Math.max(0, window.innerHeight*Math.random()-h)+"px"
-        
-      }
-      </script>
-  </body>
+    form.submit.addEventListener('click', on_input);
+    const cont = document.querySelector('.container');
+    const array = [];
+
+    function createListItem(value){
+      const li =document.createElement('li')
+      li.innerText = value
+      return li
+    }
+
+    function add_end(event){
+      array.push(form.element.value)
+      console.log(array);
+    }
+    const li = createListItem(form.element.value)
+     items.append(li)
+
+     function add_start() {
+      array.unshift(form.element.value)
+      console.log(array);
+     }
+
+     const li = createListItem(form.element.value)
+     items.append(li)
+
+
+  </script>
+</body>
 
 </html>
