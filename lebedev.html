@@ -1,93 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>      
-      .container {
-        display: flex;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .item {
-        padding: 20px;
-        margin: 10px; 
-      }
-    </style>
-  </head>
-  <body>
-    <form action="" method="get" name="arrayform">
-      <label>
-        Элемент
-        <input type="text" name="element" />
-      </label>
-      <label>
-        Цвет
-        <input type="color" name="color" />
-      </label>
-      <input type="button" name="on_end" value="В конец"/>
-      <input type="button" name="on_start" value="В начало"/>
-    </form>
-    <div class="container">
-      <ul class="items"></ul>
-    </div>
-    <script>
-      const form = document.forms.arrayform;
-      
-      document.addEventListener('DOMContentLoaded', refill_items)
-      form.on_end.addEventListener("click", add_end);      
-      form.on_start.addEventListener("click", add_start);      
-      const cont = document.querySelector(".container");
-      const items = document.querySelector('.items');
-      const array = from_localstorage() || [];
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
 
-      function createListItem(index) {
-        const li = document.createElement('li')
-        li.innerHTML = `<div class="item" style="background-color: ${array[index].color}">
-          ${array[index].text}
-          </div>`        
-        li.addEventListener('click', () => remove(index))
-        return li
-      }
-      function refill_items() {
-        items.innerHTML = ""
-        for (let i=0; i<array.length; i++) {
-          const li = createListItem(i)
-          items.append(li)
-        }
-      }
-      function to_localstorage(obj) {
-        window.localStorage.setItem('array', JSON.stringify(obj))
-      }
-      function from_localstorage() {
-        return JSON.parse(window.localStorage.getItem('array'))
-      }
-      function add_end(event) {
-        obj = {
-          text: form.element.value, 
-          color:form.color.value
-        }
-        array.push(obj)
-        to_localstorage(array)
-        refill_items()      
-      }
-      function add_start() {
-        obj = {
-          text: form.element.value, 
-          color:form.color.value
-        }
-        array.unshift(obj)
-        to_localstorage(array)
-        refill_items()
-      }
-      function remove(i) {
-        array.splice(i, 1)
-        to_localstorage(array)
-        refill_items()
-      }
-    </script>
-  </body>
+<script src="script.js"></script>  
+</body>
 </html>
